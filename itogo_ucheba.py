@@ -2,11 +2,12 @@ import requests
 import json
 from tkinter import *
 from tkinter import messagebox as mb
+from tkinter import ttk
 
 
 
 def exchange_crypt():
-    code = entry.get().strip().lower()
+    code = Combobox.get().strip().lower()
     if code:
         try:
             #response = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,binancecoin,ripple,cardano,solana,polkadot,dogecoin,chainlink&vs_currencies=usd,rub')
@@ -35,10 +36,14 @@ ws = Tk()
 ws.title('Курс обмена криптовалюты')
 ws.geometry('360x180')
 
-Label(text='Введите код криптовалюты: ').pack(padx=10, pady=10)
+Label(text='Выберите код криптовалюты: ').pack(padx=10, pady=10)
 
-entry = Entry()
-entry.pack(padx=10, pady=10)
+cur = ['BTC', 'ETH', 'XRP', 'USDT', 'BNB', 'SOL', 'DOGE', 'ADA', 'DOT']
+Combobox = ttk.Combobox(values=cur)
+Combobox.pack(padx=10, pady=10)
+
+#entry = Entry()
+#entry.pack(padx=10, pady=10)
 
 Button(text='Получить курс обмена к доллару', command=exchange_crypt).pack(padx=10, pady=10)
 ws.mainloop()
